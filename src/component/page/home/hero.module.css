@@ -1,0 +1,38 @@
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  max-width: 480px;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.right_button {
+  color: #ff5722;
+  border: 1px solid #ff5722;
+}
+
+.right_button:hover {
+  background-color: #ff5722;
+  color: white;
+  border: 1px solid #ff5722;
+}
+
+.grid_styles {
+  min-height: 100vh;
+}
+
+@media screen and (min-width: 1800px) {
+  .grid_styles {
+    min-height: fit-content;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 50px;
+  }
+}

@@ -1,0 +1,26 @@
+.shadow {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.img_logo {
+  height: 30px;
+}
+.navlink {
+  color: #ff5722;
+  font-weight: 500;
+}
+.navlink:hover {
+  color: #a24c32;
+}
+
+.mt_2 {
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+.img_logo {
+  height: 50px;
+}
+}
+
+

@@ -1,0 +1,16 @@
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #212529;
+  text-align: center;
+}
+
+.box_shadow {
+  padding: 10px;
+	box-shadow: 0 25px 50px -12px rgba(217, 46, 46, 0.25);
+  border-radius: 6px;
+}
+
+.title_card {
+  font-weight: 600;
+}

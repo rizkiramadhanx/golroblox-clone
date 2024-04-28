@@ -1,0 +1,32 @@
+.logo_footer {
+  height: 55px;
+}
+
+.text_golroblox {
+  font-size: 12px;
+  color: #888181;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cfcaca;
+}
+
+.since {
+  color: #cfcaca;
+  margin-top: 18px;
+  font-size: 12px;
+}
+
+.title_section {
+  color: #888181;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.text_list {
+  font-size: 12px;
+  color: #888181;
+}
+
+
+.container_footer {
+  border-top: 1px solid #cfcaca;
+}

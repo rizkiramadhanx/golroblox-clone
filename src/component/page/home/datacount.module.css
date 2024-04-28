@@ -1,0 +1,34 @@
+.card {
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 25px 50px -12px rgba(202, 73, 73, 0.25);
+  border: 2px solid #ff5722;
+}
+
+.count {
+  text-align: center;
+  color: black;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #888181;
+}
+
+.description {
+  color: #888181;
+  font-size: 14px;
+  text-align: center;
+}
+
+.navlink {
+  color: #ff5722;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
