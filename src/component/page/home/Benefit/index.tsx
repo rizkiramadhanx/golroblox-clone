@@ -1,5 +1,5 @@
 import { Container, Flex, SimpleGrid } from "@mantine/core";
-import styles from '@/component/page/home/benefit.module.css'
+import styles from './benefit.module.css'
 import { IconCash, IconShoppingCartPin, IconMedal2, IconUsers } from "@tabler/icons-react";
 
 const dataBenefit = [{

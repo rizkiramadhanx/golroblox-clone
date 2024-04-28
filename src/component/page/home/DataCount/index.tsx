@@ -1,5 +1,5 @@
 import { Container, SimpleGrid } from "@mantine/core";
-import styles from '@/component/page/home/datacount.module.css'
+import styles from './datacount.module.css'
 
 type cardCountType = {
   count: number;

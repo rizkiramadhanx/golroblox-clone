@@ -2,7 +2,7 @@
 import { Container, Flex } from "@mantine/core";
 import { Grid } from '@mantine/core';
 import { IconBrandInstagram, IconBrandYoutube } from "@tabler/icons-react";
-import styles from '@/component/layout/css/footer.module.css'
+import styles from './footer.module.css'
 
 export default function Footer() {
   return (<Container fluid

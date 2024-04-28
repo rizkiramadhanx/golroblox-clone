@@ -1,5 +1,5 @@
 import { Burger, Container, Flex } from "@mantine/core";
-import styles from '@/component/layout/css/navbar.module.css'
+import styles from './navbar.module.css'
 import { useEffect, useState } from "react";
 import { Drawer } from '@mantine/core';
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";

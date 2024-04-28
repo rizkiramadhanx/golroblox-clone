@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button, Container, Flex, Grid, SimpleGrid } from "@mantine/core";
-import styles from '@/component/page/home/hero.module.css'
-import { IconPhoto, IconShoppingCart } from "@tabler/icons-react";
+import styles from './hero.module.css';
+import { Button, Container, Flex, SimpleGrid } from "@mantine/core";
+import { IconShoppingCart } from "@tabler/icons-react";
 
 export default function Hero() {
   return (

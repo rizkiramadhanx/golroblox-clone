@@ -1,8 +1,5 @@
-import Footer from "@/component/layout/Footer";
-import Navbar from "@/component/layout/Navbar";
-import Benefit from "@/component/page/home/Benefit";
-import DataCount from "@/component/page/home/DataCount";
-import Hero from "@/component/page/home/Hero";
+import { Footer, Navbar } from "@/component/layout";
+import { Benefit, DataCount, Hero } from "@/component/page/home";
 
 export default function Index() {
 
