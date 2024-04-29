@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Flex, SimpleGrid, TextInput } from "@mantine/core";
+import { Box, Button, Container, Flex, SimpleGrid, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import styles from '@/styles/register.module.css'
@@ -93,7 +94,11 @@ export default function Register() {
               Submit
             </Button>
           </form>
-          <div>jajaj</div>
+          <Flex display={{ base: 'none', lg: 'flex' }} justify='end' align='center' pt='100'>
+            <img style={{
+              maxHeight: '500px'
+            }} src="/img/goroblox.png" alt="hero" />
+          </Flex>
         </SimpleGrid>
 
       </Container>
