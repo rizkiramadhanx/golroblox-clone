@@ -43,7 +43,7 @@ export default function DataCount() {
   return (<Container fluid
     px={{
       base: '20',
-      sm: 100
+      sm: 50
     }}
     py={24}
     maw={1800}

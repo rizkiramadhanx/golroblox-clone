@@ -22,7 +22,7 @@ export default function Benefit() {
     <Container fluid
       px={{
         base: '20',
-        sm: 100
+        sm: 50
       }}
       py={62}
       maw={1800}

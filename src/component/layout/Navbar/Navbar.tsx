@@ -29,7 +29,7 @@ export default function Navbar() {
     <Container className={clsx((scroll.y !== 0 || width < 575) && styles.shadow)} pos='fixed' bg='white' style={{ zIndex: 9999 }} fluid py={{ base: 12, sm: 16 }}
       px={{
         base: '20',
-        sm: 100
+        sm: 50
       }}
       w='100%' >
 

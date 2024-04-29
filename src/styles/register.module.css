@@ -1,0 +1,7 @@
+.wrapper_form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  margin-top: 100px;
+}

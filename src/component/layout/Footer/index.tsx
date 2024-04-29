@@ -8,7 +8,7 @@ export default function Footer() {
   return (<Container fluid
     px={{
       base: '20',
-      sm: 100
+      sm: 50
     }}
     className={styles.container_footer}
     py={64}

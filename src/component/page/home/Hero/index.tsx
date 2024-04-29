@@ -8,7 +8,7 @@ export default function Hero() {
     <Container fluid
       px={{
         base: '20',
-        sm: 100
+        sm: 50
       }}
       maw={1800}
       pt={{
