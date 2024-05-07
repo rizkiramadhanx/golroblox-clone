@@ -1,58 +1,45 @@
-"use client"
 /* eslint-disable @next/next/no-img-element */
 import { Navbar } from "@/component/layout";
-import styles from '@/styles/register.module.css';
-import { baseUrlAxios } from "@/utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Flex, Notification, SimpleGrid, TextInput, em } from "@mantine/core";
-import { useMutation } from "@tanstack/react-query";
-import { AxiosRequestConfig } from "axios";
+import { Button, Container, Flex, SimpleGrid, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { notifications } from '@mantine/notifications';
-import { useRouter } from "next/router";
+import styles from '@/styles/login.module.css'
+import { useMutation } from "@tanstack/react-query";
+import { AxiosRequestConfig } from "axios";
+import { baseUrlAxios } from "@/utils/axios";
+import { notifications } from "@mantine/notifications";
 import { useState } from "react";
+import { useRouter } from "next/router";
+
 
 const schema = z.object({
-  fullName: z.string().min(5, { message: 'minimal 5 karakter' }),
-  username: z.string().min(5, { message: 'minimal 5 karakter' }).refine(s => !s.includes(' '), 'Karakter tidak boleh berupa spasi'),
   email: z.string({ message: 'tidak boleh kosong' }).email({ message: 'harus berupa email' }),
   password: z.string().min(8, { message: 'minimal 8 karakter' }),
-  confirmPassword: z.string().min(8, { message: 'minimal 8 karakter' })
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "password tidak sama, periksa ulang",
-  path: ["confirmPassword"]
 })
 
-export default function Register() {
 
-  type RegisterSchema = z.infer<typeof schema>;
+export default function Login() {
+
+  type LoginSchema = z.infer<typeof schema>
 
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
 
   const { mutate } = useMutation({
-    mutationFn: (registerData: RegisterSchema) => {
+    mutationFn: (registerData: LoginSchema) => {
       const config: AxiosRequestConfig = {
         method: 'post',
         data: registerData,
-        url: '/api/v1/register'
+        url: '/api/v1/login'
       }
       return baseUrlAxios(config)
     }
   })
 
-  const { register, handleSubmit, formState: {
-    isValid,
-    isLoading,
-    errors
-  } } = useForm<RegisterSchema>({
-    mode: 'onBlur',
-    resolver: zodResolver(schema)
-  })
-
   const router = useRouter()
 
-  const formSubmit = (dataSubmit: RegisterSchema) => {
+
+  const formSubmit = (dataSubmit: LoginSchema) => {
     mutate(dataSubmit, {
       onSuccess: () => {
         notifications.show({
@@ -64,7 +51,7 @@ export default function Register() {
         setDisableSubmit(true)
 
         setTimeout(() => {
-          router.push('/login')
+          router.push('/')
         }, 1000)
       },
       onError: () => {
@@ -77,10 +64,18 @@ export default function Register() {
     })
   }
 
+  const { register, handleSubmit, formState: {
+    isValid,
+    isLoading,
+    errors
+  } } = useForm<LoginSchema>({
+    mode: 'onBlur',
+    resolver: zodResolver(schema)
+  })
 
   return (<>
     <Navbar />
-    <div className="wrapper">
+    <div className="wrapper" >
       <Container fluid
         px={{
           base: '20',
@@ -94,25 +89,6 @@ export default function Register() {
             className={styles.wrapper_form}
             onSubmit={handleSubmit(formSubmit)}
           >
-            <Flex gap={10} >
-              <TextInput
-                label='Nama Lengkap'
-                placeholder="John Doe"
-                w='100%'
-                error={errors.fullName?.message}
-                {...register('fullName')}
-              />
-              <TextInput
-                label='Username'
-                error={errors.username?.message}
-                // @ts-ignore
-                onInput={(e) => e.target.value = ("" + e.target.value).toLowerCase()}
-                placeholder="johndoe"
-                w='100%'
-
-                {...register('username')}
-              />
-            </Flex>
             <TextInput
               label='Email'
               error={errors.email?.message}
@@ -126,18 +102,10 @@ export default function Register() {
               type="password"
               placeholder="p@assW0rd123"
               {...register('password')}
-
             />
-            <TextInput
-              label='Konfirmasi Password'
-              placeholder="p@assW0rd123"
-              type="password"
-              error={errors.confirmPassword?.message}
-              {...register('confirmPassword')}
 
-            />
             <Button type="submit"
-              loading={isLoading || disableSubmit}
+              loading={isLoading}
               disabled={!isValid || isLoading}
               mt="sm">
               Submit
@@ -145,11 +113,11 @@ export default function Register() {
           </form>
           <Flex display={{ base: 'none', lg: 'flex' }} justify='end' align='center' pt='100'>
             <img style={{
-              maxHeight: '500px'
+              maxHeight: '400px'
             }} src="/img/goroblox.png" alt="hero" />
           </Flex>
         </SimpleGrid>
       </Container>
     </div>
-  </>)
+  </>);
 }

@@ -8,6 +8,7 @@
 .navlink {
   color: #ff5722;
   font-weight: 500;
+  cursor: pointer;
 }
 .navlink:hover {
   color: #a24c32;
