@@ -1,17 +1,14 @@
 import { Flex, Paper, Text } from "@mantine/core";
 import { IconCircleCheck } from "@tabler/icons-react";
-import { InferGetServerSidePropsType } from "next"
-import { notFound } from 'next/navigation'
+import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 
 
 export const getServerSideProps = (async (context: any) => {
 
   const { token } = context.query;
-  // const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const res = await fetch(`http:/localhost:8000/api/v1/email-confirmation/${token}`)
-
-  const errorCode = res.ok ? false : res.status
+  
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/email-confirmation/${token}`)
 
   if (!res.ok) {
     return {
@@ -23,7 +20,6 @@ export const getServerSideProps = (async (context: any) => {
   return {
     props: {
       repo,
-      status: { errorCode, isError: true }
     },
   }
 })
