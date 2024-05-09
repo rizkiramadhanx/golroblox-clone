@@ -1,6 +1,13 @@
-export async function getServerSideProps(context: any) {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+import { notFound } from "next/navigation"
 
+export async function getServerSideProps(context: any) {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todo/1")
+
+  if (!res.ok) {
+    return {
+      notFound: true
+    }
+  }
   const data = await res.json()
 
   return {
@@ -11,7 +18,7 @@ export async function getServerSideProps(context: any) {
 export default function ssr({ message, data }: any) {
 
   return <div>
-    {message} { JSON.stringify(data)}
+    {message} {JSON.stringify(data)}
   </div>
 
 }
