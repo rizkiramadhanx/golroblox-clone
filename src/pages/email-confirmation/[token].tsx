@@ -24,7 +24,7 @@ export const getServerSideProps = (async (context: any) => {
   }
 })
 
-export default function EmailConfirmation({ repo }: InferGetServerSidePropsType<any>) {
+export default function EmailConfirmation({ repo }: any) {
 
   const router = useRouter()
 

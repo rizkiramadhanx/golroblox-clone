@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/component/layout";
 import Provider from "@/component/layout/Provider";
 import { Container, MantineProvider, createTheme, rem } from "@mantine/core";
 import '@mantine/core/styles.css';
@@ -29,7 +30,9 @@ export default function App({ Component, pageProps }: AppProps) {
       className={poppins.className}
     >
       <Provider>
-        <Component  {...pageProps} />
+        <AuthProvider>
+          <Component  {...pageProps} />
+        </AuthProvider>
       </Provider>
     </div>
   </>

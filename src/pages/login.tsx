@@ -11,6 +11,7 @@ import { baseUrlAxios } from "@/utils/axios";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { getCookie, setCookie } from 'cookies-next';
 
 
 const schema = z.object({
@@ -38,15 +39,19 @@ export default function Login() {
 
   const router = useRouter()
 
-
   const formSubmit = (dataSubmit: LoginSchema) => {
     mutate(dataSubmit, {
-      onSuccess: () => {
+      onSuccess: (config) => {
         notifications.show({
           color: 'green',
           title: 'Register Berhasil',
           message: null
         })
+
+        const { token, refresh_token } = config.data.data
+
+        setCookie('access_token', token)
+        setCookie('refresh_token', refresh_token)
 
         setDisableSubmit(true)
 
