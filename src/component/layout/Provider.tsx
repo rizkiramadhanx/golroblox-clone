@@ -15,6 +15,21 @@ const CONTAINER_SIZES: Record<string, string> = {
 };
 
 const theme = createTheme({
+  colors: {
+    'brand': [
+      "#ffece4",
+      "#ffd9cc",
+      "#ffb29a",
+      "#ff8963",
+      "#ff6636",
+      "#ff4f18",
+      "#ff4307",
+      "#e43400",
+      "#cc2c00",
+      "#b22100"
+    ],
+  },
+  primaryColor: 'brand',
   components: {
     Container: Container.extend({
       vars: (_, { size, fluid }) => ({
@@ -37,7 +52,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
   return (<QueryClientProvider client={queryClient}>
     <MantineProvider theme={theme}>
       <Notifications
-        position="top-right" zIndex={1000}
+        position="top-right" zIndex={10000000}
       />
       {children}
     </MantineProvider>

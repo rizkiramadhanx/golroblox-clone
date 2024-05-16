@@ -1,9 +1,12 @@
 import type { AxiosInstance } from "axios";
 import axios from "axios";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 
 const baseUrlAxios: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  headers: {
+    Authorization: getCookie("access_token") || null
+  }
 });
 
 baseUrlAxios.interceptors.response.use(
@@ -12,6 +15,7 @@ baseUrlAxios.interceptors.response.use(
   },
   function (error) {
     const { status } = error.response;
+
     if (status === 401) {
       deleteCookie("access_token");
       deleteCookie("refresh_token");

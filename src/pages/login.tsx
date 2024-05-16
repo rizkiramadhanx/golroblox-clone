@@ -12,6 +12,7 @@ import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { getCookie, setCookie } from 'cookies-next';
+import Head from "next/head";
 
 
 const schema = z.object({
@@ -79,6 +80,7 @@ export default function Login() {
   })
 
   return (<>
+    <Head>Login | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
     <Navbar />
     <div className="wrapper" >
       <Container fluid

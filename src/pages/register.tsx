@@ -12,6 +12,7 @@ import { z } from "zod";
 import { notifications } from '@mantine/notifications';
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Head from "next/head";
 
 const schema = z.object({
   fullName: z.string().min(5, { message: 'minimal 5 karakter' }),
@@ -79,6 +80,7 @@ export default function Register() {
 
 
   return (<>
+    <Head>Register | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
     <Navbar />
     <div className="wrapper">
       <Container fluid
