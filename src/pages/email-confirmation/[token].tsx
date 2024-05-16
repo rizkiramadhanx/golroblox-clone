@@ -8,7 +8,7 @@ export const getServerSideProps = (async (context: any) => {
 
   const { token } = context.query;
   
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/email-confirmation/${token}`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/email-confirmation/${token}`)
 
   if (!res.ok) {
     return {

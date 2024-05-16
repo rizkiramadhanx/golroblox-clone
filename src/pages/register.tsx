@@ -35,7 +35,7 @@ export default function Register() {
       const config: AxiosRequestConfig = {
         method: 'post',
         data: registerData,
-        url: '/api/v1/register'
+        url: '/api/v1/auth/register'
       }
       return baseUrlAxios(config)
     }
