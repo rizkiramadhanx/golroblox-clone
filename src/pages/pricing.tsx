@@ -26,25 +26,45 @@ export default function Pricing() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [errorAmount, setErrorAmount] = useState<string | null>(null)
   const [activeProductId, setActiveProductId] = useState<string | null>(null)
-  const [activeStock, setActiveStock ] = useState(0)
+  const [activeStock, setActiveStock] = useState(0)
 
   useEffect(() => {
-    if (amount < 1 || activeStock < amount) {
+    if (amount < 1) {
       setErrorAmount('Jumlah tidak valid')
+    }
+
+    else if (activeStock < amount) {
+      setErrorAmount('Stock tidak tersedia')
+    }
+
+    else if (activeStock < amount) {
+      setErrorAmount('Stock tidak tersedia')
     }
     else {
       setErrorAmount(null)
     }
-  }, [errorAmount, amount])
+  }, [errorAmount, amount, activeStock])
 
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, refetch } = useQuery({
     queryKey: ['pricing-data'],
     queryFn: async () => {
       const data = baseUrlAxios.get('/api/v1/order/product')
       return data
     }
   })
+
+  const { data: dataMe, isSuccess: isSuccessDataMe } = useQuery({
+    queryKey: ['data-me'],
+    queryFn: async () => {
+      
+      const data = baseUrlAxios.get('/api/v1/auth/me')
+      return data
+    },
+    enabled: isLogin,
+  })
+
+
 
   const { mutate } = useMutation({
     mutationFn: (data) => {
@@ -76,7 +96,7 @@ export default function Pricing() {
             zIndex: 99999
           },
           color: 'red',
-          title: 
+          title:
             // @ts-ignore
             err.response.data.message
           ,
@@ -106,7 +126,9 @@ export default function Pricing() {
         maw={1800}
         w='100%' >
         <div className={styles.wrapper_content}>
-          <Text size="lg" fw={600} >Daftar Harga</Text>
+          <Text size="lg" fw={600} >Daftar Harga
+            {isSuccessDataMe && <span style={{ color: 'green' }}> (token dimiliki : {dataMe?.data.user.balance})</span>}
+          </Text>
           <Table.ScrollContainer minWidth={500} mt={20}>
             <Table stickyHeader striped stripedColor="brand.0" withTableBorder>
               <Table.Thead >

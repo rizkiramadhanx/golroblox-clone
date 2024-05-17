@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Navbar } from "@/component/layout";
+import styles from '@/styles/login.module.css';
+import { baseUrlAxios } from "@/utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Flex, SimpleGrid, TextInput } from "@mantine/core";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import styles from '@/styles/login.module.css'
+import { notifications } from "@mantine/notifications";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
-import { baseUrlAxios } from "@/utils/axios";
-import { notifications } from "@mantine/notifications";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { getCookie, setCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 
 const schema = z.object({
