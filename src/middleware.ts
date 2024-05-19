@@ -1,13 +1,12 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("access_token")?.value;
 
-  const privateRoute = "/my-profile";
+  const privateRoute = ["/my-profile", "/history-order"];
   const auth = ["/login", "/register"];
 
-  if (request.nextUrl.pathname === privateRoute) {
+  if (privateRoute.some((route) => route === request.nextUrl.pathname)) {
     if (accessToken) {
       return NextResponse.next();
     } else {
