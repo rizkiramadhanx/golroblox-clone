@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("access_token")?.value;
 
-  const privateRoute = ["/my-profile", "/history-order"];
+  const privateRoute = ["/my-profile", "/order-history"];
   const auth = ["/login", "/register"];
 
   if (privateRoute.some((route) => route === request.nextUrl.pathname)) {
