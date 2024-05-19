@@ -80,7 +80,11 @@ export default function Login() {
   })
 
   return (<>
-    <Head>Login | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
+    <Head>
+      <title>
+        Login | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+      </title>
+    </Head>
     <Navbar />
     <div className="wrapper" >
       <Container fluid

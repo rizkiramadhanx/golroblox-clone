@@ -5,6 +5,7 @@ import Head from "next/head";
 export default function Index() {
 
   return (<>
-    <Head>{process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
+    <Head>
+      <title>{process.env.NEXT_PUBLIC_NAME_WEBSITE}</title></Head>
     <Navbar /><Hero /><DataCount /><Benefit /><Footer /></>)
 }

@@ -1,5 +1,5 @@
 import { Navbar } from "@/component/layout";
-import { Button, Container, Grid } from "@mantine/core";
+import { Container, Grid } from "@mantine/core";
 import { deleteCookie } from "cookies-next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -10,13 +10,16 @@ export default function MyProfile() {
   const handleLogout = () => {
     deleteCookie('access_token')
     deleteCookie('refresh_token')
-
     router.push('/login')
   }
 
   
   return (<>
-    <Head>My Profile | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
+    <Head>
+      <title>
+        My Profile | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+      </title>
+    </Head>
     <Navbar />
     <div className="wrapper">
       <Container fluid

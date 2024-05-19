@@ -80,7 +80,11 @@ export default function Register() {
 
 
   return (<>
-    <Head>Register | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
+    <Head>
+      <title>
+        Register | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+      </title>
+    </Head>
     <Navbar />
     <div className="wrapper">
       <Container fluid

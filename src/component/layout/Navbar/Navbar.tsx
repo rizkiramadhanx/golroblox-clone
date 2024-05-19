@@ -1,3 +1,5 @@
+"use client"
+
 import { Burger, Button, Container, Drawer, Flex, Modal } from "@mantine/core";
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import clsx from "clsx";

@@ -54,10 +54,10 @@ export default function Pricing() {
     }
   })
 
-  const { data: dataMe, isSuccess: isSuccessDataMe } = useQuery({
+  const { data: dataMe, isSuccess: isSuccessDataMe, refetch: refectMe } = useQuery({
     queryKey: ['data-me'],
     queryFn: async () => {
-      
+
       const data = baseUrlAxios.get('/api/v1/auth/me')
       return data
     },
@@ -69,7 +69,7 @@ export default function Pricing() {
   const { mutate } = useMutation({
     mutationFn: (data) => {
       const config: AxiosRequestConfig = {
-        method: 'put',
+        method: 'post',
         data: data,
         url: '/api/v1/order/sell-stock'
       }
@@ -81,6 +81,19 @@ export default function Pricing() {
     setActiveProductId(id)
     setActiveStock(stock)
     setIsOpen(true)
+  }
+
+  const downloadTxtFile = (text: string, nameFile: string) => {
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'order-' + nameFile);
+
+    link.click();
+
+    window.URL.revokeObjectURL(url);
   }
 
   const handleSubmit = () => {
@@ -103,18 +116,27 @@ export default function Pricing() {
           message: null
         })
       },
-      onSuccess: () => {
+      onSuccess: (data) => {
+        refetch()
+        refectMe()
+        setIsOpen(false)
         notifications.show({
           color: 'green',
           title: `Anda berhasil membeli ${amount} item`,
           message: null
         })
+        const splitResult = data.data.data.items.join("\n")
+        downloadTxtFile(splitResult, data.data.data.createdAt)
       }
     })
   }
 
   return (<>
-    <Head>My Profile | {process.env.NEXT_PUBLIC_NAME_WEBSITE}</Head>
+    <Head>
+      <title>
+       Pricing
+      </title>
+    </Head>
     <Navbar />
     <div className="wrapper">
       <Container fluid
@@ -129,6 +151,7 @@ export default function Pricing() {
           <Text size="lg" fw={600} >Daftar Harga
             {isSuccessDataMe && <span style={{ color: 'green' }}> (token dimiliki : {dataMe?.data.user.balance})</span>}
           </Text>
+
           <Table.ScrollContainer minWidth={500} mt={20}>
             <Table stickyHeader striped stripedColor="brand.0" withTableBorder>
               <Table.Thead >
@@ -147,9 +170,10 @@ export default function Pricing() {
                     <Table.Td>{index + 1}</Table.Td>
                     <Table.Td>{e.name}</Table.Td>
                     <Table.Td>{e.description}</Table.Td>
-                    <Table.Td>{RupiahFormatter(e.price)}</Table.Td>
-                    <Table.Td>{e.stock.length}</Table.Td>
-                    <Table.Td><Button color="green.4" onClick={() => handleClickRow(e.id, e.stock.length)}>Beli</Button></Table.Td>
+                    <Table.Td fw={500} color="green">
+                      {e.price} Token</Table.Td>
+                    <Table.Td>{e._count.items}</Table.Td>
+                    <Table.Td><Button color="green.4" onClick={() => handleClickRow(e.id, e._count.items)}>Beli</Button></Table.Td>
                   </Table.Tr>
                 ) :
                   <Table.Tr>
