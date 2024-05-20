@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 export default function Pricing() {
 
   // automaticly download txt, where buy is success
-
   const isLogin = useLogin()
   const router = useRouter()
 
@@ -134,7 +133,7 @@ export default function Pricing() {
   return (<>
     <Head>
       <title>
-       Pricing
+        Pricing | Partridge Castle
       </title>
     </Head>
     <Navbar />

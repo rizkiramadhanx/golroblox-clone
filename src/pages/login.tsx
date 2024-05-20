@@ -2,6 +2,7 @@
 import { Navbar } from "@/component/layout";
 import styles from '@/styles/login.module.css';
 import { baseUrlAxios } from "@/utils/axios";
+import ENV from "@/utils/env";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Flex, SimpleGrid, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
@@ -45,7 +46,7 @@ export default function Login() {
       onSuccess: (config) => {
         notifications.show({
           color: 'green',
-          title: 'Register Berhasil',
+          title: 'Login Berhasil',
           message: null
         })
 
@@ -82,7 +83,7 @@ export default function Login() {
   return (<>
     <Head>
       <title>
-        Login | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+        Login | Partridge Castle
       </title>
     </Head>
     <Navbar />

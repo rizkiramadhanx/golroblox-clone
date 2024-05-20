@@ -2,8 +2,11 @@
 import styles from './hero.module.css';
 import { Button, Container, Flex, SimpleGrid } from "@mantine/core";
 import { IconShoppingCart } from "@tabler/icons-react";
+import { useRouter } from 'next/router';
 
 export default function Hero() {
+
+  const router = useRouter()
   return (
     <Container fluid
       px={{
@@ -21,7 +24,7 @@ export default function Hero() {
           <div className={styles.title}>Upgrade Akun Roblox Kamu di Golroblox</div>
           <div className={styles.description}>Miliki Robux dengan biaya termurah dan terhemat hanya di Golroblox, proses instan dan verifikasi pembayaran otomatis.</div>
           <Flex gap='15'>
-            <Button fz='16' color="#ff5722" fw={400} size='lg' >Beli Robux</Button>
+            <Button fz='16' color="#ff5722" fw={400} size='lg' onClick={() => router.push('/pricing')} >Beli Robux</Button>
             <Button fz='16'
               leftSection={<IconShoppingCart size={20} />}
               fw={400} color="white" className={styles.right_button} size='lg'>Cara Membeli</Button>

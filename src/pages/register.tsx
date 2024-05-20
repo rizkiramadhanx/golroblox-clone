@@ -82,7 +82,7 @@ export default function Register() {
   return (<>
     <Head>
       <title>
-        Register | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+        Register | Partridge Castle
       </title>
     </Head>
     <Navbar />

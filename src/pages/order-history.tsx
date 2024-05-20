@@ -69,7 +69,7 @@ export default function OrderHistory() {
   return (<>
     <Head>
       <title>
-        {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+       Order History | Partridge Castle
       </title>
     </Head>
     <Navbar />

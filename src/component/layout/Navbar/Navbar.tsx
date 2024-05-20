@@ -1,14 +1,15 @@
+/* eslint-disable jsx-a11y/alt-text */
 "use client"
 
+import useLogin from "@/hooks/useLogin";
 import { Burger, Button, Container, Drawer, Flex, Modal } from "@mantine/core";
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
+import { IconUserCircle } from "@tabler/icons-react";
 import clsx from "clsx";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from './navbar.module.css';
-import { IconUserCircle } from "@tabler/icons-react";
-import useLogin from "@/hooks/useLogin";
 
 
 const poppins = Poppins({
@@ -43,10 +44,12 @@ export default function Navbar() {
         sm: 50
       }}
       w='100%' >
+
       <Flex justify='space-between' align='center' >
-        <img className={styles.img_logo} src="https://storage.googleapis.com/komerce/assets/LP-Komerce/komplace.svg" />
+        <img className={styles.img_logo} onClick={() => router.push('/')} src="https://storage.googleapis.com/komerce/assets/LP-Komerce/komplace.svg" />
         <Flex gap='32' align='center' display={{ base: 'none', sm: 'flex' }} >
           <div onClick={() => router.push('/')} className={styles.navlink}>
+            {isLogin ? 'true' : 'false'}
             Home
           </div>
           <div onClick={() => router.push('/pricing')} className={styles.navlink}>Beli Robux</div>
@@ -66,12 +69,16 @@ export default function Navbar() {
         <div className={clsx(poppins.className, styles.mt_2, styles.navlink)}>
           Home
         </div>
-        <div onClick={() => setOpenModal(!openModal)} className={clsx(poppins.className, styles.navlink)}>Beli Robux</div>
-        <div className={clsx(poppins.className, styles.navlink)}>Cek Pesanan</div>
+        <div onClick={() => router.push('/pricing')} className={clsx(poppins.className, styles.navlink)}>Beli Robux</div>
+        {isLogin ?
+          <>
+            <div className={styles.navlink}>Cek Pesanan</div>
+            <div><Button onClick={() => router.push('/my-profile')} className={styles.navlink} >My Profile</Button></div>
+          </> : <Flex  direction='column' gap={5}>
+            <Button onClick={() => router.push('/login')} >Login</Button>
+            <Button onClick={() => router.push('/register')} variant="outline">Register</Button>
+          </Flex>}
       </Drawer>
-      <Modal opened={openModal} onClose={() => setOpenModal(false)} withCloseButton={false} style={{ zIndex: 11 }} title="Authentication">
-
-      </Modal>
     </Container>
   )
 }

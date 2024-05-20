@@ -17,7 +17,7 @@ export default function MyProfile() {
   return (<>
     <Head>
       <title>
-        My Profile | {process.env.NEXT_PUBLIC_NAME_WEBSITE}
+        My Profile | Partridge Castle
       </title>
     </Head>
     <Navbar />

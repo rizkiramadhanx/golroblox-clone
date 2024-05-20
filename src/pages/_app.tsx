@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/component/layout";
 import Provider from "@/component/layout/Provider";
+import ENV from "@/utils/env";
 import { Container, MantineProvider, createTheme, rem } from "@mantine/core";
 import '@mantine/core/styles.css';
 import type { AppProps } from "next/app";
@@ -19,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (<>
     <Head>
-      <title>{process.env.NEXT_PUBLIC_NAME_WEBSITE}</title>
+      <title>Partridge Castle</title>
       <meta
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
