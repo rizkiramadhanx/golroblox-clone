@@ -46,7 +46,7 @@ export default function Navbar() {
       w='100%' >
 
       <Flex justify='space-between' align='center' >
-        <img className={styles.img_logo} onClick={() => router.push('/')} src="https://storage.googleapis.com/komerce/assets/LP-Komerce/komplace.svg" />
+        <img className={styles.img_logo} onClick={() => router.push('/')} src="/img/logo.png" />
         <Flex gap='32' align='center' display={{ base: 'none', sm: 'flex' }} >
           <div onClick={() => router.push('/')} className={styles.navlink}>
             {isLogin ? 'true' : 'false'}
