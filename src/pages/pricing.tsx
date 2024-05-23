@@ -10,6 +10,7 @@ import { Button, Container, Flex, Input, Modal, Stack, Table, Text } from "@mant
 import { notifications } from "@mantine/notifications";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
+import { getCookie } from "cookies-next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -48,7 +49,11 @@ export default function Pricing() {
   const { data, isSuccess, refetch } = useQuery({
     queryKey: ['pricing-data'],
     queryFn: async () => {
-      const data = baseUrlAxios.get('/api/v1/order/product')
+      const data = baseUrlAxios.get('/api/v1/order/product', {
+        headers: {
+          Authorization: getCookie("access_token")
+        }
+      })
       return data
     }
   })
@@ -70,7 +75,8 @@ export default function Pricing() {
       const config: AxiosRequestConfig = {
         method: 'post',
         data: data,
-        url: '/api/v1/order/sell-stock'
+        url: '/api/v1/order/sell-stock',
+        
       }
       return baseUrlAxios(config)
     }

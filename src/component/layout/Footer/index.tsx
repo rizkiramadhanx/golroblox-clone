@@ -20,7 +20,7 @@ export default function Footer() {
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Flex direction='column' gap={16}>
               <Flex>
-                <img className={styles.logo_footer} src="https://storage.googleapis.com/komerce/assets/LP-Komerce/komplace.svg" alt="logo" />
+                <img className={styles.logo_footer} src="/img/logo.png" alt="logo" />
               </Flex>
               <div className={styles.text_golroblox}>Golroblox.com merupakan website tempat beli robux roblox murah dengan fitur proses instant dan verifikasi pembayaran otomatis.</div>
             </Flex>

@@ -9,6 +9,7 @@ import { parseAsInteger, useQueryState } from 'nuqs'
 import { useState } from "react";
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
+import { getCookie } from "cookies-next";
 
 
 export default function OrderHistory() {
@@ -36,6 +37,9 @@ export default function OrderHistory() {
         params: {
           skip: skip || 0,
           take: take || 10
+        },
+        headers: {
+          Authorization: getCookie("access_token")
         }
       })
       return data
