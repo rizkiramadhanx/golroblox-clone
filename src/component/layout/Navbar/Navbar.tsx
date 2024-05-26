@@ -49,13 +49,12 @@ export default function Navbar() {
         <img className={styles.img_logo} onClick={() => router.push('/')} src="/img/logo.png" />
         <Flex gap='32' align='center' display={{ base: 'none', sm: 'flex' }} >
           <div onClick={() => router.push('/')} className={styles.navlink}>
-            {isLogin ? 'true' : 'false'}
             Home
           </div>
           <div onClick={() => router.push('/pricing')} className={styles.navlink}>Beli Robux</div>
           {isLogin ?
             <>
-              <div onClick={() => router.push('/order-history')} className={styles.navlink}>Cek Pesanan</div>
+              <div  className={styles.navlink}>Cek Pesanan</div>
               <div><IconUserCircle onClick={() => router.push('/my-profile')} className={styles.navlink} /></div>
             </> : <Flex align='center' gap={10}>
               <Button onClick={() => router.push('/login')} >Login</Button>

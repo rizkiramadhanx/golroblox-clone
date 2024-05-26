@@ -1,5 +1,6 @@
 import { Container, SimpleGrid } from "@mantine/core";
 import styles from './datacount.module.css'
+import CountUp from 'react-countup';
 
 type cardCountType = {
   count: number;
@@ -11,7 +12,10 @@ type cardCountType = {
 
 const CardCount = ({ count, title, description, navlink, link }: cardCountType) => {
   return (<div className={styles.card}>
-    <div className={styles.count}>{count}</div>
+    <div
+      className={styles.count}
+    ><CountUp end={count} enableScrollSpy={true} delay={1} /></div>
+    
     <div className={styles.title}>{title}</div>
     <div className={styles.description}>{description}</div>
     <div className={styles.navlink}>{navlink}</div>
