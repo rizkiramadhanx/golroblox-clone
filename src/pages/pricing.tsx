@@ -61,11 +61,15 @@ export default function Pricing() {
   const { data: dataMe, isSuccess: isSuccessDataMe, refetch: refectMe } = useQuery({
     queryKey: ['data-me'],
     queryFn: async () => {
-
-      const data = baseUrlAxios.get('/api/v1/auth/me')
+      const url = '/api/v1/auth/me'
+      const data = baseUrlAxios.request({
+        url,
+        headers: {
+          Authorization: getCookie("access_token")
+        }
+      })
       return data
     },
-    enabled: isLogin,
   })
 
 
