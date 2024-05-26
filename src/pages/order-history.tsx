@@ -4,12 +4,11 @@ import { Navbar } from "@/component/layout";
 import { baseUrlAxios } from "@/utils/axios";
 import { Button, Container, Flex, Pagination, Stack, Table, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import Head from "next/head";
-import { parseAsInteger, useQueryState } from 'nuqs'
-import { useState } from "react";
-import { format } from 'date-fns'
-import { id } from 'date-fns/locale'
 import { getCookie } from "cookies-next";
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
+import Head from "next/head";
+import { parseAsInteger, useQueryState } from 'nuqs';
 
 
 export default function OrderHistory() {
