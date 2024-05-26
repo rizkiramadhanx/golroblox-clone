@@ -54,7 +54,7 @@ export default function Navbar() {
           <div onClick={() => router.push('/pricing')} className={styles.navlink}>Beli Robux</div>
           {isLogin ?
             <>
-              <div  className={styles.navlink}>Cek Pesanan</div>
+              <div onClick={() => router.push('/order-history')} className={styles.navlink}>Cek Pesanan</div>
               <div><IconUserCircle onClick={() => router.push('/my-profile')} className={styles.navlink} /></div>
             </> : <Flex align='center' gap={10}>
               <Button onClick={() => router.push('/login')} >Login</Button>
