@@ -65,7 +65,7 @@ export default function Pricing() {
       const data = baseUrlAxios.request({
         url,
         headers: {
-          Authorization: getCookie("access_token")
+          Authorization: getCookie("access_token") || localStorage.getItem('access_token')
         }
       })
       return data
