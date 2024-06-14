@@ -14,10 +14,6 @@ export default function AuthProvider({ children }: {
     if (typeof window !== 'undefined') {
       setIsClient(true)
     }
-    if (router.pathname === '/register') {
-      router.push('/')
-    }
-    console.log(isClient)
 
   }, [router, isClient])
 
