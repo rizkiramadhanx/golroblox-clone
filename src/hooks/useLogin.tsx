@@ -5,7 +5,7 @@ const useLogin = () => {
   const [isLogin, setIsLogin] = useState(false)
 
   useEffect(() => {
-    if (hasCookie('access_token')) {
+    if (hasCookie('access_token') || localStorage.getItem('access_token')) {
       setIsLogin(true)
     }
   }, [])
