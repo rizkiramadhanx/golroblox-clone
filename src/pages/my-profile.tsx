@@ -102,9 +102,6 @@ export default function MyProfile() {
     router.push('/login')
   }
 
-
-
-
   return (<>
     <Head>
       <title>

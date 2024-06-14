@@ -5,7 +5,7 @@ import { deleteCookie, getCookie } from "cookies-next";
 const baseUrlAxios: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
-    Authorization: getCookie("access_token") || localStorage.getItem('access_token') || null
+    Authorization: getCookie("access_token")
   }
 });
 
