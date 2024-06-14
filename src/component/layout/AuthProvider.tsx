@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/router"
 import { ReactNode, useEffect, useState } from "react"
+import Loading from "../page/Loading"
 
 export default function AuthProvider({ children }: {
   children: ReactNode
@@ -14,9 +15,8 @@ export default function AuthProvider({ children }: {
     if (typeof window !== 'undefined') {
       setIsClient(true)
     }
-
   }, [router, isClient])
 
 
-  return (<div>{isClient ? children : <div>Loading...</div>}</div>)
+  return (<div>{isClient ? children : <Loading/>}</div>)
 }
