@@ -51,17 +51,13 @@ export default function Login() {
         })
 
         const { token, refresh_token } = config.data.data
-
+        localStorage.setItem('access_token', token)
+        localStorage.setItem('refresh_token', refresh_token)
         setCookie('access_token', token)
         setCookie('refresh_token', refresh_token)
 
-        localStorage.setItem('access_token', token)
-        localStorage.setItem('refresh_token', refresh_token)
-
-
-
         setDisableSubmit(true)
-
+        
         setTimeout(() => {
           router.push('/')
         }, 1000)

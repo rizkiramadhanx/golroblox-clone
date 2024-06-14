@@ -1,20 +1,26 @@
 "use client"
 
 import { useRouter } from "next/router"
-import { ReactNode, useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react"
 
 export default function AuthProvider({ children }: {
   children: ReactNode
 }) {
 
   const router = useRouter()
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-
+    if (typeof window !== 'undefined') {
+      setIsClient(true)
+    }
     if (router.pathname === '/register') {
       router.push('/')
     }
-  }, [router])
+    console.log(isClient)
 
-  return (<div>{children}</div>)
+  }, [router, isClient])
+
+
+  return (<div>{isClient ? children : <div>Loading...</div>}</div>)
 }

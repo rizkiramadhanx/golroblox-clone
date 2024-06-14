@@ -1,7 +1,5 @@
 import { AuthProvider } from "@/component/layout";
 import Provider from "@/component/layout/Provider";
-import ENV from "@/utils/env";
-import { Container, MantineProvider, createTheme, rem } from "@mantine/core";
 import '@mantine/core/styles.css';
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
