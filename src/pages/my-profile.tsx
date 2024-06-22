@@ -1,7 +1,7 @@
 import { Navbar } from "@/component/layout";
 import { baseUrlAxios } from "@/utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Flex, Grid, SimpleGrid, Stack, TextInput } from "@mantine/core";
+import { Button, Container, Flex, Grid, Modal, SimpleGrid, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
@@ -27,6 +27,8 @@ export default function MyProfile() {
   type editUser = z.infer<typeof schema>
 
   const [id, setId] = useState('')
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
 
   const { data, isSuccess, refetch } = useQuery({
     queryKey: ['data-me'],
@@ -41,6 +43,18 @@ export default function MyProfile() {
       return data
     },
   })
+
+  const { data: dataWorld, isSuccess: isSuccessWorld } = useQuery({
+    queryKey: ['data-worl'],
+    queryFn: async () => {
+      const url = '/get-deposit-info'
+      const data = baseUrlAxios.request({
+        url,
+      })
+      return data
+    },
+  })
+
 
 
 
@@ -158,11 +172,22 @@ export default function MyProfile() {
                 />
               </Stack>
             </SimpleGrid>
-            <Flex justify='end' mt={20}>
+
+            <Flex justify='space-between' mt={20}>
+              {isSuccessWorld && <Flex fw={600} color="green" display='flex' gap={20} align={'center'}>
+                <div>Balance : {data?.data.user.balance}</div>
+                <Button onClick={() => setIsOpen(true)}>Deposit</Button>
+                <Modal opened={isOpen} withCloseButton={true} centered onClose={() => setIsOpen(false)}>
+                  <div>World : {dataWorld.data.data.owner}</div>
+                  <div>Owner :  {dataWorld.data.data.world}</div>
+                  <div>Dont forget to take screenshot</div>
+                </Modal>
+              </Flex>}
               <Button loading={isLoading} disabled={!isValid} w={{ base: '100%', lg: '25%' }} type="submit">Simpan</Button>
             </Flex>
           </form>}
         </Stack>
       </Container>
-    </div></>)
+    </div>
+  </>)
 }
