@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import Head from "next/head";
 
-const poppins = Poppins({
+export const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 })

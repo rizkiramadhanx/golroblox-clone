@@ -2,14 +2,16 @@
 "use client"
 
 import useLogin from "@/hooks/useLogin";
-import { Burger, Button, Container, Drawer, Flex, Modal } from "@mantine/core";
-import { useViewportSize, useWindowScroll } from "@mantine/hooks";
+import { Burger, Button, Popover, Container, Drawer, Flex, Modal } from "@mantine/core";
+import { useDisclosure, useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { IconUserCircle } from "@tabler/icons-react";
 import clsx from "clsx";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from './navbar.module.css';
+import { deleteCookie } from "cookies-next";
+
 
 
 const poppins = Poppins({
@@ -25,6 +27,13 @@ export default function Navbar() {
 
 
   const [openModal, setOpenModal] = useState<boolean>(false)
+
+  const handleLogout = () => {
+    localStorage.clear()
+    deleteCookie('access_token')
+    deleteCookie('refresh_token')
+    router.reload()
+  }
 
   const [toggle, setToggle] = useState(false)
   const { width } = useViewportSize();
@@ -54,13 +63,24 @@ export default function Navbar() {
           <div onClick={() => router.push('/pricing')} className={styles.navlink}>Beli Robux</div>
           {isLogin ?
             <>
-              <div onClick={() => router.push('/order-history')} className={styles.navlink}>Cek Pesanan</div>
-              <div><IconUserCircle onClick={() => router.push('/my-profile')} className={styles.navlink} /></div>
+              <div onClick={() => router.push('/order-history')} className={clsx(styles.navlink)}>Cek Pesanan</div>
+              <Popover shadow="lg" >
+                <Popover.Target>
+                  <Button >
+                    Profile
+                  </Button>
+                </Popover.Target>
+                <Popover.Dropdown >
+                  <Flex direction='column'>
+                    <Button className={clsx(poppins.className, styles.mt_2, styles.navlink)} leftSection={<IconUserCircle />} onClick={() => router.push('/my-profile')}> My Profie</Button>
+                    <Button className={clsx(poppins.className, styles.mt_2, styles.navlink)} mt={10} color="red" onClick={handleLogout} >Logout</Button>
+                  </Flex>
+                </Popover.Dropdown>
+              </Popover>
             </> : <Flex align='center' gap={10}>
               <Button onClick={() => router.push('/login')} >Login</Button>
               <Button onClick={() => router.push('/register')} variant="outline">Register</Button>
             </Flex>}
-
         </Flex>
         <Burger onClick={() => setToggle(!toggle)} opened={toggle} display={{ base: 'block', sm: 'none' }} />
       </Flex>
@@ -71,9 +91,10 @@ export default function Navbar() {
         <div onClick={() => router.push('/pricing')} className={clsx(poppins.className, styles.navlink)}>Beli Robux</div>
         {isLogin ?
           <>
-            <div onClick={() => router.push('/order-history')} className={styles.navlink}>Cek Pesanan</div>
-            <div><Button onClick={() => router.push('/my-profile')} className={styles.navlink} >My Profile</Button></div>
-          </> : <Flex  direction='column' gap={5}>
+            <div onClick={() => router.push('/order-history')} className={clsx(poppins.className, styles.mt_2, styles.navlink)}>Cek Pesanan</div>
+            <div><Button onClick={() => router.push('/my-profile')} className={clsx(poppins.className, styles.mt_2, styles.navlink)} >My Profile</Button></div>
+            <div><Button mt={10} color="red" onClick={handleLogout} className={clsx(poppins.className, styles.mt_2, styles.navlink)} >Logout</Button></div>
+          </> : <Flex direction='column' gap={5}>
             <Button onClick={() => router.push('/login')} >Login</Button>
             <Button onClick={() => router.push('/register')} variant="outline">Register</Button>
           </Flex>}

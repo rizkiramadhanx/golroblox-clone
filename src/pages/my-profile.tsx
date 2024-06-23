@@ -1,7 +1,7 @@
 import { Navbar } from "@/component/layout";
 import { baseUrlAxios } from "@/utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Flex, Grid, Modal, SimpleGrid, Stack, TextInput } from "@mantine/core";
+import { Button, Container, Flex, Grid, Modal, SimpleGrid, Stack, Text, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from 'zod'
+import { poppins } from "./_app";
 
 const schema = z.object({
   fullName: z.string().min(5, { message: 'minimal 5 karakter' }),
@@ -172,15 +173,14 @@ export default function MyProfile() {
                 />
               </Stack>
             </SimpleGrid>
-
             <Flex justify='space-between' mt={20}>
               {isSuccessWorld && <Flex fw={600} color="green" display='flex' gap={20} align={'center'}>
                 <div>Balance : {data?.data.user.balance}</div>
                 <Button onClick={() => setIsOpen(true)}>Deposit</Button>
                 <Modal opened={isOpen} withCloseButton={true} centered onClose={() => setIsOpen(false)}>
-                  <div>World : {dataWorld.data.data.owner}</div>
-                  <div>Owner :  {dataWorld.data.data.world}</div>
-                  <div>Dont forget to take screenshot</div>
+                  <Text className={poppins.className} fz='xl' fw={600}>World : {dataWorld.data.data.owner}</Text>
+                  <Text className={poppins.className} fz='xl' fw={600}>Owner :  {dataWorld.data.data.world}</Text>
+                  <Text mt={20} className={poppins.className}>Dont forget to take screenshot</Text>
                 </Modal>
               </Flex>}
               <Button loading={isLoading} disabled={!isValid} w={{ base: '100%', lg: '25%' }} type="submit">Simpan</Button>
