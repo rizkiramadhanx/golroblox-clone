@@ -173,8 +173,8 @@ export default function MyProfile() {
                 />
               </Stack>
             </SimpleGrid>
-            <Flex justify='space-between' mt={20}>
-              {isSuccessWorld && <Flex fw={600} color="green" display='flex' gap={20} align={'center'}>
+            <Flex justify={{base:'end', md:'space-between'}} mt={20}>
+              {isSuccessWorld && <Flex  fw={600} color="green" display={{base: 'none', md: 'flex'}} gap={20} align={'center'}>
                 <div>Balance : {data?.data.user.balance}</div>
                 <Button onClick={() => setIsOpen(true)}>Deposit</Button>
                 <Modal opened={isOpen} withCloseButton={true} centered onClose={() => setIsOpen(false)}>

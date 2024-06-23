@@ -91,9 +91,9 @@ export default function Navbar() {
         <div onClick={() => router.push('/pricing')} className={clsx(poppins.className, styles.navlink)}>Beli Robux</div>
         {isLogin ?
           <>
-            <div onClick={() => router.push('/order-history')} className={clsx(poppins.className, styles.mt_2, styles.navlink)}>Cek Pesanan</div>
-            <div><Button onClick={() => router.push('/my-profile')} className={clsx(poppins.className, styles.mt_2, styles.navlink)} >My Profile</Button></div>
-            <div><Button mt={10} color="red" onClick={handleLogout} className={clsx(poppins.className, styles.mt_2, styles.navlink)} >Logout</Button></div>
+            <div onClick={() => router.push('/order-history')} className={clsx(poppins.className, styles.navlink)}>Cek Pesanan</div>
+            <div><Button onClick={() => router.push('/my-profile')} className={clsx(poppins.className, styles.navlink)} >My Profile</Button></div>
+            <div><Button mt={10} color="red" onClick={handleLogout} className={clsx(poppins.className, styles.navlink)} >Logout</Button></div>
           </> : <Flex direction='column' gap={5}>
             <Button onClick={() => router.push('/login')} >Login</Button>
             <Button onClick={() => router.push('/register')} variant="outline">Register</Button>
