@@ -133,8 +133,18 @@ export default function MyProfile() {
         py={24}
         maw={1800}
         w='100%' >
-
-        <Stack gap={2} mt={90}>
+        <Stack mt={80} mb={30} display={{ md: 'none' }}>
+            {isSuccessWorld && <Flex fw={600} color="green" justify='space-between' align={'center'} gap={20}>
+              <div>Balance : {data?.data.user.balance}</div>
+              <Button onClick={() => setIsOpen(true)}>Deposit</Button>
+              <Modal opened={isOpen} withCloseButton={true} centered onClose={() => setIsOpen(false)}>
+                <Text className={poppins.className} fz='xl' fw={600}>World : {dataWorld.data.data.owner}</Text>
+                <Text className={poppins.className} fz='xl' fw={600}>Owner :  {dataWorld.data.data.world}</Text>
+                <Text mt={20} className={poppins.className}>Dont forget to take screenshot</Text>
+              </Modal>
+            </Flex>}
+        </Stack>
+        <Stack gap={2} mt={{md:'90'}} >
           {isSuccess && <form
             onSubmit={handleSubmit(submitForm)}
           >
@@ -173,8 +183,8 @@ export default function MyProfile() {
                 />
               </Stack>
             </SimpleGrid>
-            <Flex justify={{base:'end', md:'space-between'}} mt={20}>
-              {isSuccessWorld && <Flex  fw={600} color="green" display={{base: 'none', md: 'flex'}} gap={20} align={'center'}>
+            <Flex justify={{ base: 'end', md: 'space-between' }} mt={20}>
+              {isSuccessWorld && <Flex fw={600} color="green" display={{ base: 'none', md: 'flex' }} gap={20} align={'center'}>
                 <div>Balance : {data?.data.user.balance}</div>
                 <Button onClick={() => setIsOpen(true)}>Deposit</Button>
                 <Modal opened={isOpen} withCloseButton={true} centered onClose={() => setIsOpen(false)}>
