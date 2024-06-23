@@ -24,6 +24,7 @@ const schema = z.object({
 
 export default function MyProfile() {
   const router = useRouter()
+  const idWorld = '6677b96939bb50eead6f114c'
 
   type editUser = z.infer<typeof schema>
 
@@ -46,17 +47,15 @@ export default function MyProfile() {
   })
 
   const { data: dataWorld, isSuccess: isSuccessWorld } = useQuery({
-    queryKey: ['data-worl'],
+    queryKey: ['data-world'],
     queryFn: async () => {
-      const url = '/get-deposit-info'
+      const url = '/api/v1/end-user/deposit/' + idWorld
       const data = baseUrlAxios.request({
         url,
       })
       return data
     },
   })
-
-
 
 
   const { mutate } = useMutation({
